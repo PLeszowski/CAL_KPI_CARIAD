@@ -17,6 +17,7 @@ from sequence_oor_check import OORCheck
 from sequence_dfs_to_excel import DFsToExcel
 from sequence_not_converged import NotConvergedSequence
 from sequence_velocity import VelocitySequence
+from gt_hw_data import HighwayGT
 import serializer
 
 
@@ -53,12 +54,13 @@ class Sequencer:
             self.run_calib_state_ratio_c2w_sequence()
             self.run_degrade_cause_ratio_sequence()
             self.run_oor_check()
-            self.save_sequence_dict()
             self.run_partial_results()
             self.run_not_converged_sequence()
             self.run_velocity_sequence()
-            # self.load_sequence_dict()
             self.run_stats_sequence()
+            self.get_gt_hw_data()
+            self.save_sequence_dict()
+            # self.load_sequence_dict()
             self.add_ds_collected_data_info()
             self.dataframes_to_excel()
             self.end_script()
@@ -303,6 +305,11 @@ class Sequencer:
                 self.logger.error('No measurement data in me.measurement_data_dict, run get_measurement_data() first')
         else:
             self.logger.error('No dataframes in sequence_df_dict')
+
+    def get_gt_hw_data(self):
+        hw_data = HighwayGT(self.sequence_dict['accuracy_af_df_dict'], self.gt_id_list)
+        hw_data.get_hw_gt_values()
+        self.sequence_dict['hw_gt_values_df'] = hw_data.gt_df
 
     def dataframes_to_excel(self):
         """
