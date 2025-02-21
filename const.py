@@ -212,6 +212,7 @@ CAM_POS_CONFIG = (
     (-5, 0, 0, VAL_SUSP_DEFAULT)
 )
 
+# CARIAD test scenario config
 CARIAD_CONFIG = (
     (VAL_ROAD_ANY, VAL_WEATHER_ANY, VAL_DAYTIME_ANY, VAL_SUSP_ANY),
     (VAL_ROAD_ANY, VAL_WEATHER_CLEAR, VAL_DAYTIME_DAY, VAL_SUSP_LOW),
@@ -224,12 +225,15 @@ CARIAD_CONFIG = (
     (VAL_ROAD_ANY, VAL_WEATHER_RAIN, VAL_DAYTIME_NIGHT, VAL_SUSP_HIGH)
 )
 
+# dataframe columns for ground truth from highway data
 GT_HW_POSE_INFO = [DFROW_GT_ID, DFROW_GT_PITCH, DFROW_GT_YAW, DFROW_GT_ROLL, DFROW_GT_HEIGHT, DFROW_GT_PITCH_DEG, DFROW_GT_YAW_DEG, DFROW_GT_ROLL_DEG]
+# map delta names to signal columns
 GT_HW_DPARAM_TO_SIG = {DFROW_D_PITCH: SIG_CLB_C2W_PITCH,
                        DFROW_D_YAW: SIG_CLB_C2W_YAW,
                        DFROW_D_ROLL: SIG_CLB_C2W_ROLL,
                        DFROW_D_HEIGHT: SIG_CLB_C2W_CAM_HEIGHT
                        }
+# map delta names to gt columns
 GT_HW_DPARAM_TO_PARAM = {DFROW_D_PITCH: DFROW_GT_PITCH,
                          DFROW_D_YAW: DFROW_GT_YAW,
                          DFROW_D_ROLL: DFROW_GT_ROLL,
