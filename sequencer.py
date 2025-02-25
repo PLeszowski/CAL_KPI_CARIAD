@@ -17,7 +17,7 @@ from sequence_oor_check import OORCheck
 from sequence_dfs_to_excel import DFsToExcel
 from sequence_not_converged import NotConvergedSequence
 from sequence_velocity import VelocitySequence
-from gt_hw_data import HighwayGT
+from ave_hw_pose import HighwayPose
 import serializer
 
 
@@ -307,9 +307,10 @@ class Sequencer:
             self.logger.error('No dataframes in sequence_df_dict')
 
     def get_gt_hw_data(self):
-        hw_data = HighwayGT(self.sequence_dict['accuracy_af_df_dict'], self.gt_id_list)
-        hw_data.get_hw_gt_values()
-        self.sequence_dict['hw_gt_values_df'] = hw_data.gt_df
+        hw_data = HighwayPose(self.sequence_dict['accuracy_af_df_dict'], self.gt_id_list)
+        hw_data.get_ave_hw_pose()
+        self.sequence_dict['hw_ave_pose_df'] = hw_data.ave_hw_pose_df
+        self.sequence_dict['top_weights_pose_df'] = hw_data.pose_top_weights_df
 
     def dataframes_to_excel(self):
         """

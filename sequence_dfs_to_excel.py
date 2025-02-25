@@ -149,10 +149,15 @@ class DFsToExcel:
             self.ex_print.sheet_name = 'velocity_df'
             df = self.sequence_dict['velocity_df']
             self.print_df(df, 'velocity_df')
-        if 'hw_gt_values_df' in self.sequence_dict:
-            self.ex_print.sheet_name = 'hw_gt_values_df'
-            df = self.sequence_dict['hw_gt_values_df']
-            self.print_df(df, 'hw_gt_values_df')
+        if 'hw_ave_pose_df' in self.sequence_dict:
+            self.ex_print.sheet_name = 'hw_ave_pose_df'
+            df = self.sequence_dict['hw_ave_pose_df']
+            self.print_df(df, 'hw_ave_pose_df')
+        if 'top_weights_pose_df' in self.sequence_dict:
+            self.ex_print.sheet_name = 'top_weights_pose_df'
+            df = self.sequence_dict['top_weights_pose_df']
+            self.print_df(df, 'top_weights_pose_df')
+
         self.ex_print.sheet_name = 'frame_counters'
         current_row = 0
         if 'accuracy_spc_ff_df' in self.sequence_dict:
